@@ -3,6 +3,11 @@
 <h2>Overview</h2>
 <p>This project involves training and testing a convolutional neural network (CNN) on an image dataset. The model is implemented using PyTorch and includes both training and testing scripts.</p>
 
+<h2>Dataset</h2>
+    <p>The dataset used for this project is the Tree Nuts Image Classification dataset, available on Kaggle. You can download it from the following link:</p>
+    <p><a href="https://www.kaggle.com/datasets/gpiosenka/tree-nuts-image-classification">Tree Nuts Image Classification Dataset</a></p>
+    <p>All data related to the nuts images for this project is stored in a file named <code>Data</code>.</p>
+
 <h2>Training Script</h2>
 <p>The training script is designed to train a CNN model on a set of images. Below are the key components of the script:</p>
 
