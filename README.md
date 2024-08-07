@@ -68,10 +68,29 @@
     <li>matplotlib</li>
 </ul>
 
-<h2>Usage</h2>
 <ul>
-    <li>Run the training script to train the model and save it.</li>
-    <li>Run the testing script to evaluate the model's performance on the test dataset.</li>
+    <li>To run the project, follow these steps:</li>
+    <li><strong>Create a Virtual Environment:</strong>
+        <ul>
+            <li>Open your  command prompt , navigate to your project directory and Create a virtual environment with:
+                <pre><code>python -m venv env</code></pre>
+            </li>
+            <li>Activate the virtual environment:
+                <pre><code>.\env\Scripts\activate</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Install Dependencies:</strong>
+        <ul>
+            <li>With the virtual environment activated, install the required dependencies:
+                <pre><code>pip install torch torchvision matplotlib</code></pre>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Run the Project:</strong>
+        <ul>
+            <li>After installing the dependencies, you can run the training and testing scripts as needed. To run the project You write command :</li>
+            <pre><code>python ProjectName.py</code></pre>
+        </ul>
+    </li>
 </ul>
-
-<p>For further details, please refer to the code comments and the official PyTorch documentation.</p>
