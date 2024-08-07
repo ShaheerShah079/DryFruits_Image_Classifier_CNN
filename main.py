@@ -19,27 +19,29 @@ def main():
         transforms.Normalize([0.5, 0.5, 0.5],  # Normalize tensor to have mean 0 and std 1 (scales to [-1, 1]),formula (x-mean)/std
                              [0.5, 0.5, 0.5]),
     ])
+    training_path='E:/Shaheer Data/Comsats/Semester7/machineLearning/Assignment2/Data/train'
+    testing_path='E:/Shaheer Data/Comsats/Semester7/machineLearning/Assignment2/Data/test'
     # Create a DataLoader for the training data
     # - Load images from the specified directory
     # - Apply the defined transformations (resize, convert to tensor, normalize)
     # - Organize images into batches of 32
     # - Shuffle the data at the beginning of each epoch
     train_data= torch.utils.data.DataLoader(
-        torchvision.datasets.ImageFolder('E:/Shaheer Data/Comsats/Semester7/machineLearning/Data/train',transform=transformer),
+        torchvision.datasets.ImageFolder(training_path,transform=transformer),
         batch_size=32,shuffle=True
     )
     test_data = torch.utils.data.DataLoader(
-        torchvision.datasets.ImageFolder('E:/Shaheer Data/Comsats/Semester7/machineLearning/Data/test',transform=transformer),
+        torchvision.datasets.ImageFolder(testing_path,transform=transformer),
         batch_size=32, shuffle=True
     )
     # Initialize the ConvNet model with 10 output classes
     model =ConvNet(10)
     # Set up the Adam optimizer with a learning rate of 0.1 for model parameters
-    optimizer = Adam(model.parameters(), lr=0.0001)
+    optimizer = Adam(model.parameters(), lr=0.0005)
     # Define the loss function as cross-entropy loss for classification tasks
     loss_func = nn.CrossEntropyLoss()
     # Set the number of epochs for training the data
-    num_epochs = 20
+    num_epochs = 10
     # Create a array of epoch indices from 0 to num_epochs-1 for tracking or plotting training progress.
     epoch_list = [i for i in range(num_epochs)]
 
@@ -50,8 +52,8 @@ def main():
     # Calculate the number of training images by counting all .jpg files in the specified directory and its subdirectories
     #glob.glob() is a function that returns a list of file paths matching a specified pattern
     #** matches directories at any level, including subdirectories of subdirectories. 'folder/**/*.jpg' matches all .jpg files in the folder directory and any of its subdirectories, regardless of how deeply nested they are.
-    train_count = len(glob.glob('E:/Shaheer Data/Comsats/Semester7/machineLearning/Data/train'+ '/**/*.jpg'))
-    test_count = len(glob.glob('E:/Shaheer Data/Comsats/Semester7/machineLearning/Data/test' + '/**/*.jpg'))
+    train_count = len(glob.glob(training_path + '/**/*.jpg'))
+    test_count = len(glob.glob(testing_path + '/**/*.jpg'))
 
     for epoch in range(num_epochs):
         # Set the model to training mode to enable features like dropout and batch normalization
@@ -100,14 +102,15 @@ def main():
         # train_accuracy = train_accuracy / total_samples
         # train_loss = train_loss / total_samples
 
-        loss_accuracy_list.append(train_accuracy)
+        train_accuracy_list.append(train_accuracy)
         loss_accuracy_list.append(train_loss)
         print(f'Epoch :{epoch} loss :  {train_loss} accuracy : {train_accuracy}')
+
     # Save the model's state dictionary (parameters) to a file named 'model.pt'
     # with open('model.pt', 'wb') as f:
     #     torch.save(model.state_dict(), f)
     print("Model Saved")
-    torch.save(model,'E:/Shaheer Data/Comsats/Semester7/machineLearning/Data/train/model1.pth')
+    torch.save(model,'E:/Shaheer Data/Comsats/Semester7/machineLearning/Assignment2/model2.pth')
     plt.plot(epoch_list, train_accuracy_list, label='Train Accuracy')
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy')
